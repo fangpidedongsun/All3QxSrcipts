@@ -1,4 +1,4 @@
-var tel = "18618264241";
+var tel = "";
 //上行引号内填入联通号码，使用前请登陆一次联通支付宝小程序
 //有问题请通过Telegram反馈 https://t.me/Leped_Bot
 var remainTime = "-";
@@ -88,7 +88,7 @@ function get_detail(remainFee, remainTime, tel) {
             else return (i / 1024).toFixed(2) + " GB";
         };
         var rFlow = setUnit(remain[2]).split(" ");
-        $notify("10010", "截止至 " + queryTime, "[剩余语音] " + remainTime + "分" + "\n[话费余额] " + remainFee + "元" + " [流量剩余] " + rFlow[0] + rFlow[1]);
+        $notify("10010", "截止至 " + queryTime, "剩余语音 " + remainTime + "分" + "\n话费余额 " + remainFee + "元" + "\n流量剩余 " + rFlow[0] + rFlow[1]);
     }, reason => {
     $notify("10010", tel + '登录失败', reason.error);
     });
