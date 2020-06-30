@@ -10,9 +10,9 @@ const $hammer = (() => {
         isQuanX = "undefined" != typeof $task;
 
     const log = (...n) => { for (let i in n) console.log(n[i]) };
-    const alert = (title, body = "", subtitle = "", link = "") => {
+    const alert = (title, body = "", subtitle = "", link = "", option) => {
         if (isSurge) return $notification.post(title, subtitle, body, link);
-        if (isQuanX) return $notify(title, subtitle, (link && !body ? link : body));
+        if (isQuanX) return $notify(title, subtitle, (link && !body ? link : body), option);
         log("==============📣系统通知📣==============");
         log("title:", title, "subtitle:", subtitle, "body:", body, "link:", link);
     };
@@ -98,7 +98,7 @@ const cookie = $hammer.read('CookieJD2')
 const name = '京东水果'
 //助力好友分享码(最多4个,否则后面的助力失败),原因:京东农场每人每天只有四次助力机会
 var shareCodes = [ // 这个列表填入你要助力的好友的shareCode
-    'a6f686a9f6aa4c80977370b03681c553',
+    'f3cfbe650ee64eaf8d1aa985cba35ed5',
     'f92cb56c6a1349f5a35f0372aa041ea0',
     'a9360baeceb04c9baaaa109f5d428d3c',
     '61ff5c624949454aa88561f2cd721bf6',
@@ -405,7 +405,10 @@ function* step() {
         console.log(`初始化农场数据异常, 请登录京东 app查看农场0元水果功能是否正常,农场初始化数据: ${JSON.stringify(farmInfo)}`);
         message = '初始化农场数据异常, 请登录京东 app查看农场0元水果功能是否正常'
     }
-    $hammer.alert(name, message, subTitle)
+    let option = {
+      'media-url': farmInfo.farmUserPro.goodsImage
+    }
+    $hammer.alert(name, message, subTitle, '', option)
     $hammer.done();
 }
 
